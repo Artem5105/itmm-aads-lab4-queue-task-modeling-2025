@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(PROJECT_NAME set)
+set(PROJECT_NAME expression_analyzer)
 project(${PROJECT_NAME})
 
 # TODO(Korniakov): not sure if these lines are needed

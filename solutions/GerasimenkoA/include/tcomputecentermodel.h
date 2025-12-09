@@ -33,6 +33,17 @@ public:
   void Model(); // запуск моделирования
 
   void PrintResult() const; // вывод в консоль результатов моделирования
+
+  //Геттеры для тестов
+  size_t GetCountCycles() const noexcept { return CountCycles; }
+  size_t GetQueueSize() const noexcept { return QueueSize; }
+  double GetQ1() const noexcept { return q1; }
+  double GetQ2() const noexcept { return q2; }
+  size_t GetCountTasks() const noexcept { return CountTasks; }
+  size_t GetCountFailure() const noexcept { return CountFailure; }
+  size_t GetCountAvrCycles() const noexcept { return CountAvrCycles; }
+  size_t GetCountStall() const noexcept { return CountStall; }
+
 };
 
 #endif
