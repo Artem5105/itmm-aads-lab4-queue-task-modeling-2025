@@ -37,9 +37,11 @@ void TComputeCenterModel::SetParameters(size_t _CountCycles, size_t _QueueSize, 
 	CountAvrCycles = 0;
 	CountStall = 0;
 
-	TaskQueue.~TQueue<size_t>();
-	new(&TaskQueue) TQueue<size_t>(QueueSize);
-	//TaskQueue = TQueue<size_t>(QueueSize); //Иначе крашится при перезаписи, ибо нет реализации оператора =
+	/*TaskQueue.~TQueue<size_t>();
+	new(&TaskQueue) TQueue<size_t>(QueueSize);*/
+	//TaskQueue.clear(); Не дает результата
+
+	TaskQueue = TQueue<size_t>(QueueSize);
 }
 
 void TComputeCenterModel::Model()

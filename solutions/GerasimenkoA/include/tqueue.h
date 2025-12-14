@@ -36,6 +36,17 @@ public:
         pMem = new T[MemSize]();
     }
 
+    TQueue(TQueue&& other) noexcept :
+        pMem(other.pMem), MemSize(other.MemSize), DataCount(other.DataCount),
+        Head(other.Head), Tail(other.Tail)
+    {
+        other.pMem = nullptr;
+        other.MemSize = 0;
+        other.DataCount = 0;
+        other.Head = 0;
+        other.Tail = 0;
+    }
+
     ~TQueue()
     {
         if (pMem != nullptr) {
@@ -44,6 +55,25 @@ public:
         }
         
     }
+
+    TQueue& operator=(TQueue&& other) noexcept 
+    {
+        if (this != &other) {
+            delete[] pMem;
+            pMem = other.pMem;
+            MemSize = other.MemSize;
+            DataCount = other.DataCount;
+            Head = other.Head;
+            Tail = other.Tail;
+
+            other.pMem = nullptr;
+            other.MemSize = 0;
+            other.DataCount = 0;
+            other.Head = other.Tail = 0;
+        }
+        return *this;
+    }
+
 
     size_t size() const { return DataCount; }
 
@@ -73,6 +103,18 @@ public:
         --DataCount;
         return tmp;
     }
+
+    /*void clear() noexcept {
+        if (pMem != nullptr) {
+            delete[] pMem;
+            pMem = nullptr;
+        }
+        DataCount = 0;
+        Head = 0;
+        Tail = 0;
+    }*/
+
+    
 };
 
 #endif
